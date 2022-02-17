@@ -2,17 +2,17 @@
 
 const Service = require('egg').Service;
 
-//服务类入口，用于封装具体的数据库访问
+// 服务类入口，用于封装具体的数据库访问
 class User extends Service {
   async login(usernameOrEmail, password) {
-    var user = await this.ctx.model.User.findOne({
+    const user = await this.ctx.model.User.findOne({
       where: {
         $or: [{ username: usernameOrEmail }, { emailaddress: usernameOrEmail }],
       },
     });
 
-    var success = false;
-    var error = '';
+    let success = false;
+    const error = '';
     if (user) {
       success = true;
     }
