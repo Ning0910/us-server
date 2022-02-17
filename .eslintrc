@@ -1,4 +1,4 @@
 {
   "extends": "eslint-config-egg",
-  "arrow-parens": 0
+  "arrow-parens": ["error", "as-needed"]
 }
