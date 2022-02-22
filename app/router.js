@@ -10,16 +10,29 @@ module.exports = (app) => {
   });
   const { router, controller } = app;
   router.get('/', controller.home.index);
-  // router.get('/news', controller.news.list);
-  // router.post('/login', controller.users.login); //登录并生成Token
+
   router.resources('appInfos', '/appInfos', controller.appInfos);
-  router.resources('appConfigs', '/appConfigs', controller.appConfigs);
-  router.get(
-    '/appConfigs/branchNames/:appId',
-    controller.appConfigs.getBranchNamesByAppId
+  router.resources(
+    'appBranchInfos',
+    '/appBranchInfos',
+    controller.appBranchInfos
   );
   router.delete(
-    '/appConfigs/deleteAppBranch/:appId',
-    controller.appConfigs.destroyBranchByAppId
+    '/appBranchInfos/deleteByAppId/:appId',
+    controller.appBranchInfos.destroyBranchByAppId
+  );
+
+  router.delete(
+    '/appBranchInfos/deleteByIdAndName/:appId/:branchName',
+    controller.appBranchInfos.destroyBranchByName
+  );
+
+  router.get(
+    '/appBranchInfos/byName/:appId/:branchName',
+    controller.appBranchInfos.getByName
+  );
+  router.get(
+    '/appBranchInfos/byVersion/:appId/:branchName/:version',
+    controller.appBranchInfos.getByVersion
   );
 };

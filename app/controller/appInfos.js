@@ -37,10 +37,31 @@ class appInfoController extends Controller {
     // 更新指定的记录-U
     const ctx = this.ctx;
     const id = ctx.params.id;
-    const body = ctx.request.body;
+    const { branchNames, curUserConfig, curBranch } = ctx.request.body;
+
+    let data1 = {},
+      data2 = {},
+      data3 = {};
+    if (curBranch) {
+      data1 = {
+        curBranch,
+      };
+    }
+    if (branchNames) {
+      data2 = {
+        branchNames,
+      };
+    }
+
+    if (curUserConfig) {
+      data3 = {
+        curUserConfig,
+      };
+    }
+
     ctx.body = await ctx.service.appInfo.update({
       id,
-      updates: body,
+      updates: Object.assign(data1, data2, data3),
     });
   }
 
@@ -49,7 +70,6 @@ class appInfoController extends Controller {
     // 删除指定的记录-D
     const ctx = this.ctx;
     const id = ctx.params.id;
-    console.log(id);
     await ctx.service.appInfo.del(id);
     ctx.status = 200;
   }

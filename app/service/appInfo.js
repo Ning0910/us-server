@@ -13,13 +13,22 @@ class AppInfo extends Service {
     const appInfo = await this.ctx.model.AppInfo.findByPk(id);
     if (!appInfo) {
       this.ctx.status = 404;
-      return;
+      return undefined;
     }
     return appInfo;
   }
 
   async create(appInfo) {
-    console.log(appInfo);
+    const app = await this.ctx.model.AppInfo.findOne({
+      where: { id: appInfo.id },
+    });
+    const app1 = await this.ctx.model.AppInfo.findOne({
+      where: { id: appInfo.appName },
+    });
+
+    if (app !== null || app1 !== null) {
+      return undefined;
+    }
     return this.ctx.model.AppInfo.create(appInfo);
   }
 
