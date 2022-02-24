@@ -71,6 +71,8 @@ class appInfoController extends Controller {
     const ctx = this.ctx;
     const id = ctx.params.id;
     await ctx.service.appInfo.del(id);
+    await ctx.service.appBranchInfo.delBranchByAppId(id);
+    await ctx.service.branchCommitLog.delByAppId(id);
     ctx.status = 200;
   }
 }

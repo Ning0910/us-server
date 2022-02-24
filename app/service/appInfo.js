@@ -23,7 +23,7 @@ class AppInfo extends Service {
       where: { id: appInfo.id },
     });
     const app1 = await this.ctx.model.AppInfo.findOne({
-      where: { id: appInfo.appName },
+      where: { appName: appInfo.appName },
     });
 
     if (app !== null || app1 !== null) {

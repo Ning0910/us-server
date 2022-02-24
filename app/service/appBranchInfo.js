@@ -9,14 +9,6 @@ class AppBranchInfo extends Service {
     return appBranchInfos;
   }
 
-  async findBranchNamesByAppId(id) {
-    const AppBranchInfos = await this.ctx.model.AppBranchInfo.findAll({
-      attributes: ['branchName'],
-      where: { appId: id },
-    });
-    return AppBranchInfos;
-  }
-
   async findByAppIdAndBranchName(id, name) {
     const AppBranchInfo = await this.ctx.model.AppBranchInfo.findOne({
       where: { appId: id, branchName: name },

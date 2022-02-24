@@ -92,6 +92,7 @@ class appBranchInfoController extends Controller {
     const appId = ctx.params.appId;
     const branchName = ctx.params.branchName;
     await ctx.service.appBranchInfo.delBranchByIdAndName(appId, branchName);
+    await ctx.service.branchCommitLog.del(appId.concat('_', branchName));
     ctx.status = 200;
   }
 }

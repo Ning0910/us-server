@@ -17,6 +17,11 @@ module.exports = (app) => {
     '/appBranchInfos',
     controller.appBranchInfos
   );
+  router.resources(
+    'branchCommitLogs',
+    '/branchCommitLogs',
+    controller.branchCommitLogs
+  );
   router.delete(
     '/appBranchInfos/deleteByAppId/:appId',
     controller.appBranchInfos.destroyBranchByAppId
@@ -34,5 +39,10 @@ module.exports = (app) => {
   router.get(
     '/appBranchInfos/byVersion/:appId/:branchName/:version',
     controller.appBranchInfos.getByVersion
+  );
+
+  router.delete(
+    '/branchCommitLogs/deleteByAppId/:appId',
+    controller.branchCommitLogs.destroyBranchByAppId
   );
 };
