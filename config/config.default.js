@@ -33,7 +33,7 @@ module.exports = (appInfo) => {
     password: '592476819',
     define: {
       // freezeTableName默认值为false，会自动在表名后加s
-      freezeTableName: true,
+      freezeTableName: false,
       // timestamps默认值为true，会自动添加create_time和update_time
       timestamps: false,
     },
