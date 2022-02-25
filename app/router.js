@@ -37,7 +37,7 @@ module.exports = (app) => {
     controller.appBranchInfos.getByName
   );
   router.get(
-    '/appBranchInfos/byVersion/:appId/:branchName/:version',
+    '/appBranchInfos/byVersion/:versionId',
     controller.appBranchInfos.getByVersion
   );
 

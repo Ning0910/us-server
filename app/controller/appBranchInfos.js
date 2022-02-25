@@ -27,13 +27,11 @@ class appBranchInfoController extends Controller {
     ctx.body = data;
   }
 
-  // GET: /appBranchInfos/byVersion/:appId/:branchName/:versionId
+  // GET: /appBranchInfos/byVersion/:versionId
   async getByVersion() {
     const ctx = this.ctx;
     const data = await ctx.service.appBranchInfo.findByVersion(
-      ctx.params.appId,
-      ctx.params.branchName,
-      ctx.params.versionId
+      ctx.helper.parseInt(ctx.params.versionId)
     );
 
     ctx.body = data;

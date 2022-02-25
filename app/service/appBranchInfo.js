@@ -22,9 +22,9 @@ class AppBranchInfo extends Service {
     return AppBranchInfo;
   }
 
-  async findByVersion(appId, branchName, versionId) {
+  async findByVersion(versionId) {
     const AppBranchInfo = await this.ctx.model.AppBranchInfo.findOne({
-      where: { appId, branchName, versionId },
+      where: { versionId },
     });
     if (!AppBranchInfo) {
       this.ctx.status = 404;
