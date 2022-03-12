@@ -10,7 +10,7 @@ module.exports = (app) => {
     versionId: BIGINT(16),
     commitLog: STRING,
     userConfig: TEXT,
-    mergeBranchVer: BIGINT(16),
+    mergeBranchVer: STRING(64),
   });
 
   return AppConfig;
