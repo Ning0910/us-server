@@ -1,6 +1,7 @@
 'use strict';
 
 const Service = require('egg').Service;
+const { Op } = require('sequelize');
 
 // 服务类入口，用于封装具体的数据库访问
 class BranchCommitLog extends Service {
@@ -42,6 +43,11 @@ class BranchCommitLog extends Service {
   async delByAppId(id) {
     return await this.ctx.model.BranchCommitLog.destroy({
       where: { appId: id },
+    });
+  }
+  async delByAppIdExclude(id) {
+    return await this.ctx.model.BranchCommitLog.destroy({
+      where: { id: { [Op.ne]: id } },
     });
   }
 }
