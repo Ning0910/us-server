@@ -93,6 +93,17 @@ class appBranchInfoController extends Controller {
     await ctx.service.branchCommitLog.del(appId.concat('_', branchName));
     ctx.status = 200;
   }
+  // DELETE: /appBranchInfos/deleteExclude/:appId/:branchName
+  async destroyBranchExclude() {
+    const ctx = this.ctx;
+    const appId = ctx.params.appId;
+    const branchName = ctx.params.branchName;
+    await ctx.service.appBranchInfo.delBranchExclude(appId, branchName);
+    await ctx.service.branchCommitLog.delByAppIdExclude(
+      appId.concat('_', branchName)
+    );
+    ctx.status = 200;
+  }
 }
 
 module.exports = appBranchInfoController;

@@ -32,6 +32,11 @@ module.exports = (app) => {
     controller.appBranchInfos.destroyBranchByName
   );
 
+  router.delete(
+    '/appBranchInfos/deleteExclude/:appId/:branchName',
+    controller.appBranchInfos.destroyBranchExclude
+  );
+
   router.get(
     '/appBranchInfos/byName/:appId/:branchName',
     controller.appBranchInfos.getByName

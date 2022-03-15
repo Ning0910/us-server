@@ -1,6 +1,7 @@
 'use strict';
 
 const Service = require('egg').Service;
+const { Op } = require('sequelize');
 
 // 服务类入口，用于封装具体的数据库访问
 class AppBranchInfo extends Service {
@@ -70,6 +71,11 @@ class AppBranchInfo extends Service {
   async delBranchByIdAndName(appId, branchName) {
     return await this.ctx.model.AppBranchInfo.destroy({
       where: { appId, branchName },
+    });
+  }
+  async delBranchExclude(appId, branchName) {
+    return await this.ctx.model.AppBranchInfo.destroy({
+      where: { appId, branchName: { [Op.ne]: branchName } },
     });
   }
 }
